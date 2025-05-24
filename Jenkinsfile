@@ -1,26 +1,21 @@
 pipeline {
     agent any
 
-    triggers{
-        cron('H/5 * * * *')
-        pollSCM('H/2 * * * *')
+    stages {
+        stage('Pull HTML') {
+            steps {
+                echo 'Fetching HTML page'
+            }
+        }
     }
 
-    stages {
-        stage('Build') {
-            steps {
-                echo 'Building...'
-            }
-        }
-        stage('Test') {
-            steps {
-                echo 'Testing...'
-            }
-        }
-        stage('Deploy') {
-            steps {
-                echo 'Deploying...'
-            }
+    post {
+        success {
+            publishHTML(target: [
+                reportDir: '.',
+                reportFiles: 'index.html',
+                reportName: 'My HTML Page'
+            ])
         }
     }
 }
