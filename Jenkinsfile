@@ -1,21 +1,17 @@
-pipeline {
+pipeline{
     agent any
 
-    stages {
-        stage('Pull HTML') {
-            steps {
-                echo 'Fetching HTML page'
+    stages{
+        stage('Build'){
+            steps{
+                echo "Building.."
             }
         }
-    }
 
-    post {
-        success {
-            publishHTML(target: [
-                reportDir: '.',
-                reportFiles: 'index.html',
-                reportName: 'My HTML Page'
-            ])
+        stage('Deploy'){
+            steps{
+                echo "Deploying"
+            }
         }
     }
 }
