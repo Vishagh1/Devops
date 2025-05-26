@@ -18,7 +18,7 @@ pipeline{
 
     post{
         success{
-            publishHTML(Targets: [
+            publishHTML(targets: [
                 reportDir: '.',
                 reportFiles: 'index.html',
                 reportName: 'htmlpage'
