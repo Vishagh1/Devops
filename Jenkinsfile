@@ -1,11 +1,6 @@
 pipeline{
     agent any
 
-    triggers{
-        cron('H/5 * * * *')
-        pollSCM('H/2 * * * *')
-        githubPush()
-    }
 
     stages{
         stage('Build'){
@@ -20,4 +15,15 @@ pipeline{
             }
         }
     }
+
+    post{
+        success{
+            publishHTML(Targets: [
+                reportDir: '.',
+                reportFiles: 'index.html'
+                reportName: 'htmlpage'
+                ])
+        }
+    }
+    
 }
