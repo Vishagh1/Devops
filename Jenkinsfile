@@ -20,7 +20,7 @@ pipeline{
         success{
             publishHTML(Targets: [
                 reportDir: '.',
-                reportFiles: 'index.html'
+                reportFiles: 'index.html',
                 reportName: 'htmlpage'
                 ])
         }
